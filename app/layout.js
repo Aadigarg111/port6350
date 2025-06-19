@@ -19,13 +19,13 @@ export const metadata = {
   description:
     "I craft intelligent, interactive user interfaces using modern web technologies like React, Next.js, and Tailwind.",
   keywords:
-    "Frontend Developer, React, Next.js, Web Development, Redux, JavaScript, TypeScript, Portfolio, Tailwind, GSAP, Swayam Swarup Panda",
-  metadataBase: new URL("https://yourdomain.com"),
+    "Frontend Developer, React, Next.js, Web Development, Redux, JavaScript, TypeScript, Portfolio, Tailwind, GSAP, Framer, Swayam Swarup Panda",
+  metadataBase: new URL("https://swayam-nine.vercel.app/"),
   openGraph: {
     title: "Swayam Swarup Panda | Frontend Developer",
     description:
       "Interactive and performant web experiences with cutting-edge frontend tech.",
-    url: "https://yourdomain.com",
+    url: "https://swayam-nine.vercel.app/",
     siteName: "Swayam's Portfolio",
     images: [
       {
