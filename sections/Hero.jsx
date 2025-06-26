@@ -169,7 +169,7 @@ const Hero = () => {
       shootingStars.push(new ShootingStar());
       shootingStarTimeout = setTimeout(
         spawnShootingStar,
-        Math.random() * 4000 + 3000
+        Math.random() * 4000 + 3000,
       );
     };
 
@@ -202,21 +202,17 @@ const Hero = () => {
     };
   }, []);
 
-  const textVariants = {
-    hidden: { opacity: 0, y: 30 },
+  const letterContainer = {
+    hidden: {},
     visible: {
-      opacity: 1,
-      y: 0,
       transition: {
-        duration: 1.2,
-        ease: "easeOut",
-        staggerChildren: 0.3,
+        staggerChildren: 0.06,
       },
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+  const letterVariant = {
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
@@ -230,7 +226,7 @@ const Hero = () => {
   return (
     <>
       <Navbar />
-      <div className="relative h-screen bg-gray-950 overflow-hidden">
+      <div className="relative h-screen overflow-hidden bg-gray-950">
         <canvas
           ref={canvasRef}
           className="absolute inset-0 z-0 opacity-0 transition-opacity duration-1000 ease-in-out"
@@ -239,26 +235,59 @@ const Hero = () => {
         <div
           role="banner"
           aria-label="Hero Section"
-          className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8"
+          className="relative z-10 flex h-full items-center justify-center px-4 sm:px-6 lg:px-8"
         >
           <motion.div
-            className="text-center text-white max-w-7xl mx-auto"
-            variants={textVariants}
+            className="mx-auto max-w-7xl text-center text-white"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.6 }}
           >
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-head font-extrabold tracking-tight leading-tight"
-              variants={itemVariants}
+              className="font-head text-5xl leading-tight font-extrabold tracking-tight md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
+              variants={letterContainer}
             >
-              Swayam
+              {"Swayam".split("").map((char, idx) => (
+                <motion.span
+                  key={idx}
+                  className="inline-block"
+                  variants={letterVariant}
+                >
+                  {char}
+                </motion.span>
+              ))}
             </motion.h1>
+
             <motion.p
-              className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-300 font-light tracking-wide leading-relaxed max-w-4xl mx-auto"
-              variants={itemVariants}
+              className="mt-4 max-w-5xl text-base leading-relaxed font-light text-gray-300 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                visible: {
+                  transition: {
+                    staggerChildren: 0.15, // word delay
+                  },
+                },
+              }}
             >
-              Frontend Developer crafting digital constellations.
+              {"Frontend Engineer blending performance, accessibility & design."
+                .split(" ")
+                .map((word, idx) => (
+                  <motion.span
+                    key={idx}
+                    className="mr-1.5 inline-block whitespace-nowrap"
+                    variants={{
+                      hidden: { opacity: 0, y: 10 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.3, ease: "easeOut" },
+                      },
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
             </motion.p>
           </motion.div>
         </div>

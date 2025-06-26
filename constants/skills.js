@@ -32,9 +32,12 @@ import logo31 from "@/public/Bulma.png";
 import logo32 from "@/public/Babel.png";
 import logo33 from "@/public/Ant Design.png";
 import logo34 from "@/public/Material UI.png";
+import logo35 from "@/public/Pnpm.png";
+import logo36 from "@/public/gsap.png";
+import logo37 from "@/public/Supabase.png";
+import logo38 from "@/public/shadcn.png";
 
 export const SKILLS = [
-  // Frontend Technologies
   { name: "HTML", logo: logo1 },
   { name: "CSS", logo: logo2 },
   { name: "JavaScript", logo: logo3 },
@@ -46,19 +49,13 @@ export const SKILLS = [
   { name: "LESS", logo: logo18 },
   { name: "Bootstrap", logo: logo9 },
   { name: "Redux", logo: logo10 },
-
-  //   // Backend Technologies
   { name: "Node.js", logo: logo11 },
   { name: "Express.js", logo: logo12 },
   { name: "Python", logo: logo13 },
-
-  //   // Databases
   { name: "MongoDB", logo: logo14 },
   { name: "PostgreSQL", logo: logo16 },
   { name: "MySQL", logo: logo15 },
   { name: "Firebase", logo: logo17 },
-
-  //   // Tools & Platforms
   { name: "Git", logo: logo19 },
   { name: "GitHub", logo: logo20 },
   { name: "Vercel", logo: logo21 },
@@ -66,7 +63,6 @@ export const SKILLS = [
   { name: "Figma", logo: logo23 },
   { name: "Postman", logo: logo24 },
   { name: "NPM", logo: logo25 },
-
   { name: "Socket.io", logo: logo26 },
   { name: "jQuery", logo: logo27 },
   { name: "GraphQL", logo: logo28 },
@@ -76,4 +72,35 @@ export const SKILLS = [
   { name: "Babel", logo: logo32 },
   { name: "Ant Design", logo: logo33 },
   { name: "Material UI", logo: logo34 },
+  { name: "PNPM", logo: logo35 },
+  { name: "GSAP", logo: logo36 },
+  { name: "Supabase", logo: logo37 },
+  { name: "Shadcn", logo: logo38 },
+];
+
+export const logos1 = [
+  { src: logo6, name: "Next.js" },
+  { src: logo5, name: "React" },
+  { src: logo7, name: "Tailwind" },
+  { src: logo3, name: "JavaScript" },
+  { src: logo2, name: "CSS" },
+  { src: logo1, name: "HTML" },
+];
+
+export const logos2 = [
+  { src: logo11, name: "Node.js" },
+  { src: logo25, name: "NPM" },
+  { src: logo16, name: "PostgreSQL" },
+  { src: logo17, name: "Firebase" },
+  { src: logo21, name: "Vercel" },
+  { src: logo37, name: "Supabase" },
+];
+
+export const logos3 = [
+  { src: logo35, name: "PNPM" },
+  { src: logo38, name: "shadcn/ui" },
+  { src: logo23, name: "Figma" },
+  { src: logo36, name: "GSAP" },
+  { src: logo19, name: "Git" },
+  { src: logo20, name: "GitHub" },
 ];

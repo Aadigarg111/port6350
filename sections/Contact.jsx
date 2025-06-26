@@ -51,7 +51,7 @@ const Contact = () => {
       if (data.success) {
         toast.success(
           data.message ||
-            "Message sent successfully! I'll get back to you soon."
+            "Message sent successfully! I'll get back to you soon.",
         );
 
         // Reset form
@@ -66,13 +66,13 @@ const Contact = () => {
         recaptchaRef.current?.reset();
       } else {
         toast.error(
-          data.message || "Failed to send message. Please try again."
+          data.message || "Failed to send message. Please try again.",
         );
       }
     } catch (error) {
       console.error("Form submission error:", error);
       toast.error(
-        "Something went wrong. Please try again or contact me directly."
+        "Something went wrong. Please try again or contact me directly.",
       );
     } finally {
       setIsSubmitting(false);
@@ -82,7 +82,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="w-full py-16 bg-white dark:bg-black text-black dark:text-white"
+      className="bg-black px-4 py-16 text-white md:px-8 lg:px-10"
     >
       {/* Toast Notifications */}
       <Toaster
@@ -109,20 +109,20 @@ const Contact = () => {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
-        <h2 className="text-4xl md:text-7xl lg:text-9xl font-head font-bold text-white my-4 md:my-8 lg:my-10">
+      <div className="mx-auto max-w-7xl">
+        <h2 className="font-head my-4 text-4xl font-bold text-white md:my-8 md:text-7xl lg:my-10 lg:text-9xl">
           Get In Touch
         </h2>
 
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
+        <div className="grid grid-cols-1 gap-8 lg:gap-12 xl:grid-cols-2 xl:gap-16">
           {/* Left: Contact Form */}
           <div className="order-2 xl:order-1">
-            <div className="bg-white dark:bg-zinc-900 border border-gray-300 dark:border-gray-700 p-6 md:p-8 lg:p-10 rounded-xl shadow-md h-fit sticky top-8">
+            <div className="sticky top-8 h-fit rounded-xl border border-gray-700 bg-zinc-900 p-6 shadow-md md:p-8 lg:p-10">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div>
                     <label
-                      className="block text-sm font-semibold mb-2"
+                      className="mb-2 block text-sm font-semibold"
                       htmlFor="name"
                     >
                       Name *
@@ -136,14 +136,14 @@ const Contact = () => {
                       disabled={isSubmitting}
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full rounded-lg border border-gray-600 bg-transparent px-4 py-3 transition-all focus:ring-2 focus:ring-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                       placeholder="Your Full Name"
                     />
                   </div>
 
                   <div>
                     <label
-                      className="block text-sm font-semibold mb-2"
+                      className="mb-2 block text-sm font-semibold"
                       htmlFor="email"
                     >
                       Email *
@@ -157,7 +157,7 @@ const Contact = () => {
                       disabled={isSubmitting}
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full rounded-lg border border-gray-600 bg-transparent px-4 py-3 transition-all focus:ring-2 focus:ring-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                       placeholder="Your Email Address"
                     />
                   </div>
@@ -165,7 +165,7 @@ const Contact = () => {
 
                 <div>
                   <label
-                    className="block text-sm font-semibold mb-2"
+                    className="mb-2 block text-sm font-semibold"
                     htmlFor="subject"
                   >
                     Subject
@@ -176,14 +176,14 @@ const Contact = () => {
                     disabled={isSubmitting}
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full rounded-lg border border-gray-600 bg-transparent px-4 py-3 transition-all focus:ring-2 focus:ring-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="What's this about?"
                   />
                 </div>
 
                 <div>
                   <label
-                    className="block text-sm font-semibold mb-2"
+                    className="mb-2 block text-sm font-semibold"
                     htmlFor="message"
                   >
                     Message *
@@ -195,7 +195,7 @@ const Contact = () => {
                     disabled={isSubmitting}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all resize-vertical disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="resize-vertical w-full rounded-lg border border-gray-600 bg-transparent px-4 py-3 transition-all focus:ring-2 focus:ring-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="Tell us a bit about your project or inquiry"
                   />
                 </div>
@@ -213,11 +213,11 @@ const Contact = () => {
                   type="submit"
                   disabled={isSubmitting}
                   aria-label="Send message"
-                  className="w-full py-4 bg-black dark:bg-white text-white dark:text-black font-bold rounded-lg hover:opacity-90 transition-all duration-200 text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-white py-4 text-lg font-bold text-black transition-all duration-200 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-current"></div>
+                      <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-current"></div>
                       Sending...
                     </>
                   ) : (
@@ -229,55 +229,53 @@ const Contact = () => {
           </div>
 
           {/* Right: Image + Info */}
-          <div className="order-1 xl:order-2 space-y-6 md:space-y-8">
-            <div className="w-full h-56 md:h-72 lg:h-80 xl:h-96 relative rounded-xl overflow-hidden shadow-lg border border-gray-300 dark:border-gray-700">
+          <div className="order-1 space-y-6 md:space-y-8 xl:order-2">
+            <div className="relative h-56 w-full overflow-hidden rounded-xl border border-gray-700 shadow-lg md:h-72 lg:h-80 xl:h-96">
               <Image
                 src="/setup.webp"
                 alt="Contact"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 600px"
-                className="object-cover rounded-xl"
+                className="rounded-xl object-cover"
               />
             </div>
 
             <div className="space-y-4 md:space-y-6">
-              <div className="p-4 md:p-6 border border-gray-300 dark:border-gray-700 rounded-lg flex items-center gap-3 md:gap-4 hover:shadow-md transition-shadow duration-300">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm">
-                  <FaEnvelope className="text-white text-sm md:text-base" />
+              <div className="flex items-center gap-3 rounded-lg border border-gray-700 p-4 transition-shadow duration-300 hover:shadow-md md:gap-4 md:p-6">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-gray-700 to-gray-800 shadow-sm md:h-12 md:w-12">
+                  <FaEnvelope className="text-sm text-white md:text-base" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="font-semibold text-sm md:text-base mb-1">
+                  <p className="mb-1 text-sm font-semibold md:text-base">
                     Email Me
                   </p>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm break-all">
+                  <p className="text-sm break-all text-gray-300">
                     swayamcoder@gmail.com
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 md:p-6 border border-gray-300 dark:border-gray-700 rounded-lg flex items-center gap-3 md:gap-4 hover:shadow-md transition-shadow duration-300">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm">
-                  <FaPhone className="text-white text-sm md:text-base" />
+              <div className="flex items-center gap-3 rounded-lg border border-gray-700 p-4 transition-shadow duration-300 hover:shadow-md md:gap-4 md:p-6">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-gray-700 to-gray-800 shadow-sm md:h-12 md:w-12">
+                  <FaPhone className="text-sm text-white md:text-base" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="font-semibold text-sm md:text-base mb-1">
+                  <p className="mb-1 text-sm font-semibold md:text-base">
                     Call Me
                   </p>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm">
-                    +91 63713 52331
-                  </p>
+                  <p className="text-sm text-gray-300">+91 63713 52331</p>
                 </div>
               </div>
 
-              <div className="p-4 md:p-6 border border-gray-300 dark:border-gray-700 rounded-lg flex items-start gap-3 md:gap-4 hover:shadow-md transition-shadow duration-300">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm">
-                  <FaClock className="text-white text-sm md:text-base" />
+              <div className="flex items-start gap-3 rounded-lg border border-gray-700 p-4 transition-shadow duration-300 hover:shadow-md md:gap-4 md:p-6">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-gray-700 to-gray-800 shadow-sm md:h-12 md:w-12">
+                  <FaClock className="text-sm text-white md:text-base" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="font-semibold text-sm md:text-base mb-1">
+                  <p className="mb-1 text-sm font-semibold md:text-base">
                     Response Time
                   </p>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm">
+                  <p className="text-sm text-gray-300">
                     Fast replies are my thing, usually within 24 hours.
                   </p>
                 </div>

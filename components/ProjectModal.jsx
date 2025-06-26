@@ -64,11 +64,11 @@ export default function ProjectModal({ modal, projects }) {
       variants={scaleAnimation}
       initial="initial"
       animate={active ? "enter" : "closed"}
-      className="h-72 w-96 absolute overflow-hidden pointer-events-none flex items-center justify-center z-50 shadow-2xl border border-gray-200 dark:border-gray-700 hidden md:flex opacity-0 md:opacity-100 transition-opacity duration-300"
+      className="pointer-events-none absolute z-50 flex hidden h-72 w-96 items-center justify-center overflow-hidden border border-gray-700 opacity-0 shadow-2xl transition-opacity duration-300 md:flex md:opacity-100"
     >
       <div
         style={{ top: `${index * -100}%` }}
-        className="h-full w-full absolute transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
+        className="absolute h-full w-full transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
       >
         {projects.map((project, projectIndex) => {
           const backgroundColors = [
@@ -87,10 +87,10 @@ export default function ProjectModal({ modal, projects }) {
 
           return (
             <div
-              className={`h-full w-full flex items-center justify-center p-4 ${bgColor}`}
+              className={`flex h-full w-full items-center justify-center p-4 ${bgColor}`}
               key={`modal_${projectIndex}`}
             >
-              <div className="relative overflow-hidden shadow-lg w-80 h-52">
+              <div className="relative h-52 w-80 overflow-hidden shadow-lg">
                 <Image
                   src={project.image}
                   alt={project.name}

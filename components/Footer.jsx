@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { NAV_ITEMS, SOCIAL_LINKS } from "@/constants/index";
 import { FaChevronUp } from "react-icons/fa";
 
-// Starfield Canvas Component (unchanged)
+// Starfield Canvas Component (enhanced glow)
 const StarfieldCanvas = () => {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
@@ -16,7 +16,7 @@ const StarfieldCanvas = () => {
 
     const ctx = canvas.getContext("2d");
     const stars = [];
-    const numStars = 150;
+    const numStars = 100;
 
     const resizeCanvas = () => {
       canvas.width = canvas.offsetWidth;
@@ -29,9 +29,9 @@ const StarfieldCanvas = () => {
         stars.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5,
-          opacity: Math.random() * 0.3 + 0.1,
-          twinkleSpeed: Math.random() * 0.02 + 0.01,
+          radius: Math.random() * 1.5 + 0.8,
+          opacity: Math.random() * 0.3 + 0.3,
+          twinkleSpeed: Math.random() * 0.015 + 0.005,
           twinklePhase: Math.random() * Math.PI * 2,
         });
       }
@@ -46,8 +46,14 @@ const StarfieldCanvas = () => {
 
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0, currentOpacity)})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(
+          0,
+          Math.min(1, currentOpacity),
+        )})`;
+        ctx.shadowBlur = 2;
+        ctx.shadowColor = "rgba(255, 255, 255, 0.4)";
         ctx.fill();
+        ctx.shadowBlur = 0;
       });
 
       animationRef.current = requestAnimationFrame(animate);
@@ -74,44 +80,59 @@ const StarfieldCanvas = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none opacity-40"
+      className="pointer-events-none absolute inset-0 h-full w-full opacity-50"
       style={{ zIndex: 1 }}
     />
   );
 };
 
-// Shooting Star Component (unchanged)
+// Shooting Star Component (SSR-safe)
 const ShootingStar = ({ isVisible, onComplete }) => {
+  const [startY, setStartY] = useState(0);
+  const [endY, setEndY] = useState(0);
+  const [endX, setEndX] = useState(1200); // fallback if no window
+
+  useEffect(() => {
+    if (isVisible && typeof window !== "undefined") {
+      const y = Math.random() * window.innerHeight * 0.5 + 50;
+      setStartY(y);
+      setEndY(y + 100 + Math.random() * 100);
+      setEndX(window.innerWidth + 200);
+    }
+  }, [isVisible]);
+
   if (!isVisible) return null;
 
   return (
     <motion.div
-      className="absolute top-1/2 -left-2 w-1 h-1 bg-white rounded-full"
-      style={{ zIndex: 2 }}
+      className="absolute h-1 w-1 rounded-full bg-white"
+      style={{ top: startY, left: -100, zIndex: 2 }}
       initial={{
-        x: -20,
-        y: Math.random() * 200 - 100,
+        x: -50,
+        y: 0,
         opacity: 0,
-        scale: 0,
+        scale: 0.5,
       }}
       animate={{
-        x: window.innerWidth + 20,
-        y: Math.random() * 200 - 100 + 50,
+        x: endX,
+        y: endY - startY,
         opacity: [0, 1, 1, 0],
-        scale: [0, 1, 1, 0],
+        scale: [0.5, 1, 1, 0.5],
       }}
       transition={{
-        duration: 2,
-        ease: "easeOut",
+        duration: 2.5,
+        ease: "easeInOut",
       }}
       onAnimationComplete={onComplete}
+      aria-hidden="true"
     >
-      <div className="absolute -left-8 top-0 w-8 h-0.5 bg-gradient-to-r from-transparent via-white to-white opacity-60 rounded-full" />
+      <div className="absolute top-0 -left-24 h-1 w-32 rounded-full bg-gradient-to-r from-transparent via-white to-transparent opacity-80 blur-sm" />
+      <div className="absolute top-0 -left-12 h-0.5 w-16 rounded-full bg-gradient-to-r from-transparent via-white to-transparent opacity-50 blur-sm" />
     </motion.div>
   );
 };
 
-// Back to Top Button (unchanged)
+// Back to Top Button (with a11y)
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -138,7 +159,7 @@ const BackToTop = () => {
   return (
     <motion.button
       onClick={scrollToTop}
-      className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors duration-200 shadow-lg"
+      className="fixed right-8 bottom-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white text-black shadow-lg transition-colors duration-200 hover:bg-gray-200"
       initial={{ opacity: 0, scale: 0 }}
       animate={{
         opacity: isVisible ? 1 : 0,
@@ -148,6 +169,7 @@ const BackToTop = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       aria-label="Back to top"
+      title="Scroll to top"
     >
       <FaChevronUp size={20} />
     </motion.button>
@@ -157,7 +179,6 @@ const BackToTop = () => {
 const Footer = () => {
   const [showShootingStar, setShowShootingStar] = useState(false);
 
-  // Shooting star trigger (unchanged logic)
   useEffect(() => {
     const triggerShootingStar = () => {
       setShowShootingStar(true);
@@ -181,11 +202,14 @@ const Footer = () => {
   return (
     <>
       <div
-        className="relative h-[500px] overflow-hidden"
+        className="relative h-[550px] overflow-hidden"
         style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
       >
-        <div className="fixed bottom-0 left-0 w-full h-[500px]">
-          <footer className="bg-gray-950 text-white h-full w-full flex flex-col justify-between relative">
+        <div className="fixed bottom-0 left-0 h-[550px] w-full">
+          <footer
+            className="relative flex h-full w-full flex-col justify-between bg-gray-950 text-white"
+            role="contentinfo"
+          >
             {/* Starfield Background */}
             <StarfieldCanvas />
 
@@ -195,35 +219,35 @@ const Footer = () => {
               onComplete={handleShootingStarComplete}
             />
 
-            {/* Content without animations */}
+            {/* Content */}
             <div
-              className="flex-grow flex items-center relative"
+              className="relative flex flex-grow items-center px-4 md:px-8 lg:px-10"
               style={{ zIndex: 3 }}
             >
-              <div className="max-w-7xl mx-auto w-full px-4 md:px-8 lg:px-10 py-8 md:py-12">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 md:gap-12">
-                  {/* Navigation Links (static) */}
-                  <div className="flex-1">
+              <div className="mx-auto w-full max-w-7xl py-8 md:py-12">
+                <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center md:gap-12">
+                  {/* Navigation Links */}
+                  <nav className="flex-1" aria-label="Footer navigation">
                     <ul className="space-y-4 text-white">
                       {NAV_ITEMS.map((link, index) => (
                         <li key={index}>
                           <a
                             href={link.href}
-                            className="w-fit text-lg md:text-xl font-semibold hover:text-gray-300 transition-colors duration-200 block"
+                            className="block w-fit text-lg font-semibold transition-colors duration-200 hover:text-gray-300 md:text-xl"
                           >
                             {link.label}
                           </a>
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </nav>
 
-                  {/* Social Links (static) */}
+                  {/* Social Links */}
                   <div className="flex-1 md:text-right">
-                    <h3 className="text-gray-400 text-lg font-semibold mb-6 tracking-wide">
+                    <h3 className="mb-6 text-lg font-semibold tracking-wide text-gray-400">
                       Follow Me
                     </h3>
-                    <div className="flex md:justify-end gap-4 mb-8">
+                    <div className="mb-8 flex gap-4 md:justify-end">
                       {SOCIAL_LINKS.map((social) => (
                         <a
                           key={social.id}
@@ -238,14 +262,15 @@ const Footer = () => {
                               ? undefined
                               : "noopener noreferrer"
                           }
-                          className="w-12 h-12 bg-gradient-to-br from-gray-700 to-gray-800 text-black rounded-full flex items-center justify-center hover:bg-gray-300 transition-all duration-200"
+                          className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-gray-700 to-gray-800 text-black transition-all duration-200 hover:bg-gray-300"
                           aria-label={social.label}
+                          title={social.label}
                         >
                           {social.icon}
                         </a>
                       ))}
                     </div>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-sm text-gray-400">
                       © {new Date().getFullYear()} Built with ❤️ and ✨ by
                       Swayam.
                     </p>
@@ -254,9 +279,9 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Portfolio Name (static) */}
+            {/* Portfolio Name */}
             <div
-              className="text-center text-[14vw] font-head font-extrabold tracking-tight text-white leading-none relative opacity-20"
+              className="font-head relative text-center text-[14vw] leading-none font-extrabold tracking-tight text-white opacity-20"
               style={{ zIndex: 3 }}
             >
               Swayam

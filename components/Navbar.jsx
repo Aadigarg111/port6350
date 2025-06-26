@@ -44,16 +44,20 @@ const Navbar = () => {
   const menuButton = useRef(null);
 
   useEffect(() => {
+    const handleUserScroll = () => {
+      if (menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+
     if (menuOpen) {
-      const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = "hidden";
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
       firstMenuItem.current?.focus();
-    } else {
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "";
+      window.addEventListener("scroll", handleUserScroll, { passive: true });
     }
+
+    return () => {
+      window.removeEventListener("scroll", handleUserScroll);
+    };
   }, [menuOpen]);
 
   const handleEscape = useCallback(
@@ -130,8 +134,8 @@ const Navbar = () => {
   );
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-black text-white border-b border-gray-800">
-      <div className="flex items-center justify-between max-w-7xl mx-auto px-4 md:px-8 lg:px-10 py-4">
+    <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-8 lg:px-10 bg-black text-white border-b border-gray-800">
+      <div className="flex items-center justify-between max-w-7xl mx-auto py-4">
         <h1 className="text-2xl font-extrabold font-head tracking-wide">
           Swayam
         </h1>
@@ -153,21 +157,17 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* AnimatePresence handles exit animation */}
       <AnimatePresence>
         {menuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-black backdrop-blur-sm z-40"
+              className="fixed inset-0 bg-black backdrop-blur-sm z-40 px-4 md:px-8 lg:px-10"
               variants={backdropVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
               aria-hidden="true"
             />
-
-            {/* Animated Nav */}
             <motion.nav
               id="mobile-menu"
               ref={menuRef}
@@ -177,7 +177,7 @@ const Navbar = () => {
               animate="visible"
               exit="exit"
             >
-              <div className="h-full max-w-7xl mx-auto flex flex-col justify-start px-4 md:px-8 lg:px-10">
+              <div className="h-full max-w-7xl mx-auto flex flex-col justify-start ">
                 {NAV_ITEMS.map((item, idx) => (
                   <motion.a
                     key={idx}

@@ -44,13 +44,37 @@ export const metadata = {
     creator: "@Swayam_Dev",
     images: ["/og-image.png"],
   },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${syne.variable}`}>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Swayam Swarup Panda",
+              url: "https://swayam-nine.vercel.app",
+              jobTitle: "Frontend Developer",
+              sameAs: [
+                "https://github.com/swayamDev",
+                "https://x.com/Swayam_Dev",
+              ],
+            }),
+          }}
+        />
       </head>
       <body className={inter.className}>{children}</body>
     </html>

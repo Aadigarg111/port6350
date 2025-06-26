@@ -53,19 +53,19 @@ const ScrollingText = ({ text = "Think. Build. Ship. Repeat." }) => {
 
   // Create the text content
   const textContent = Array.from({ length: 10 }).map((_, i) => (
-    <span key={i} className="font-head font-bold mx-4 md:mx-8 inline-block">
+    <span key={i} className="font-head mx-4 inline-block font-bold md:mx-8">
       {text}
     </span>
   ));
 
   return (
-    <div className="py-12 overflow-hidden" ref={containerRef}>
-      <div className="relative w-full bg-white py-2 rotate-[-3deg]">
+    <div className="overflow-hidden bg-black py-12" ref={containerRef}>
+      <div className="relative w-full rotate-[-3deg] bg-white py-2">
         <div className="relative h-10 md:h-20">
           {/* Added height */}
           {/* First text instance */}
           <motion.div
-            className="whitespace-nowrap font-bold text-4xl md:text-7xl text-black absolute top-0 left-0"
+            className="absolute top-0 left-0 text-4xl font-bold whitespace-nowrap text-black md:text-7xl"
             style={{
               x: useTransform(xPercent, (value) => `${value}%`),
               willChange: "transform",
@@ -75,7 +75,7 @@ const ScrollingText = ({ text = "Think. Build. Ship. Repeat." }) => {
           </motion.div>
           {/* Second text instance for seamless loop */}
           <motion.div
-            className="whitespace-nowrap font-bold text-4xl md:text-7xl text-black absolute top-0 left-0"
+            className="absolute top-0 left-0 text-4xl font-bold whitespace-nowrap text-black md:text-7xl"
             style={{
               x: useTransform(xPercent, (value) => `${value + 100}%`),
               willChange: "transform",

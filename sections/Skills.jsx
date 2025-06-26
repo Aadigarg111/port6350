@@ -9,10 +9,10 @@ const Skills = () => {
   const secondRow = SKILLS.slice(midPoint);
 
   const SkillCard = ({ skill }) => (
-    <div className="group flex-shrink-0 flex flex-col items-center transition-all duration-300 hover:scale-105 min-w-[120px] md:min-w-[140px] p-3 md:p-4">
+    <div className="group flex min-w-[120px] flex-shrink-0 flex-col items-center p-3 transition-all duration-300 hover:scale-105 md:min-w-[140px] md:p-4">
       {/* Logo */}
-      <div className="w-32 h-40 md:w-36 md:h-44 lg:w-40 lg:h-48 bg-[#1a1a1a] rounded-xl flex flex-col items-center justify-center mb-3 transition-all duration-300 group-hover:bg-gray-700 group-hover:shadow-lg border border-gray-800 group-hover:border-gray-600">
-        <div className="w-16 h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 mb-4 relative">
+      <div className="mb-3 flex h-40 w-32 flex-col items-center justify-center rounded-xl border border-gray-800 bg-[#1a1a1a] transition-all duration-300 group-hover:border-gray-600 group-hover:bg-gray-700 group-hover:shadow-lg md:h-44 md:w-36 lg:h-48 lg:w-40">
+        <div className="relative mb-4 h-16 w-16 md:h-18 md:w-18 lg:h-20 lg:w-20">
           <Image
             src={skill.logo}
             alt={skill.name}
@@ -20,11 +20,11 @@ const Skills = () => {
             width={80}
             height={80}
             sizes="(max-width: 768px) 64px, (max-width: 1024px) 72px, 80px"
-            className="object-contain filter group-hover:brightness-110 transition-all duration-300"
+            className="object-contain filter transition-all duration-300 group-hover:brightness-110"
           />
         </div>
         {/* Skill Name */}
-        <h3 className="text-white font-medium text-center text-sm md:text-base lg:text-lg leading-tight px-2">
+        <h3 className="px-2 text-center text-sm leading-tight font-medium text-white md:text-base lg:text-lg">
           {skill.name}
         </h3>
       </div>
@@ -34,13 +34,13 @@ const Skills = () => {
   const SkillRow = ({ skills, direction = "left" }) => (
     <div className="relative mb-4 md:mb-6">
       {/* Gradient Overlays */}
-      <div className="absolute left-0 top-0 w-12 md:w-16 h-full bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute right-0 top-0 w-12 md:w-16 h-full bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none"></div>
+      <div className="pointer-events-none absolute top-0 left-0 z-10 h-full w-12 bg-gradient-to-r from-black via-black/80 to-transparent md:w-16"></div>
+      <div className="pointer-events-none absolute top-0 right-0 z-10 h-full w-12 bg-gradient-to-l from-black via-black/80 to-transparent md:w-16"></div>
 
       {/* Scrollable Container */}
-      <div className="overflow-x-auto scrollbar-hide">
+      <div className="scrollbar-hide overflow-x-auto">
         <div
-          className={`flex space-x-4 md:space-x-6 px-6 md:px-8 animate-scroll-${direction}`}
+          className={`flex space-x-4 px-6 md:space-x-6 md:px-8 animate-scroll-${direction}`}
           style={{
             width: "max-content",
             animationDuration: "30s",
@@ -58,9 +58,12 @@ const Skills = () => {
   );
 
   return (
-    <section id="skills" className="w-full py-16 bg-black">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
-        <h2 className="text-4xl md:text-7xl lg:text-9xl font-head font-bold text-white my-4 md:my-8 lg:my-10">
+    <section
+      id="skills"
+      className="w-full bg-black px-4 py-16 md:px-8 lg:px-10"
+    >
+      <div className="mx-auto max-w-7xl">
+        <h2 className="font-head my-4 text-4xl font-bold text-white md:my-8 md:text-7xl lg:my-10 lg:text-9xl">
           Skills
         </h2>
 
