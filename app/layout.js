@@ -15,33 +15,33 @@ const syne = Syne({
 });
 
 export const metadata = {
-  title: "Swayam Swarup Panda | Frontend Developer",
+  title: "Aadi Garg | Frontend Developer",
   description:
     "I craft intelligent, interactive user interfaces using modern web technologies like React, Next.js, and Tailwind.",
   keywords:
-    "Frontend Developer, React, Next.js, Web Development, Redux, JavaScript, TypeScript, Portfolio, Tailwind, GSAP, Framer, Swayam Swarup Panda",
-  metadataBase: new URL("https://swayam-nine.vercel.app/"),
+    "Frontend Developer, React, Next.js, Web Development, Redux, JavaScript, TypeScript, Portfolio, Tailwind, GSAP, Framer, Aadi Garg",
+  metadataBase: new URL("https://Aadi-nine.vercel.app/"),
   openGraph: {
-    title: "Swayam Swarup Panda | Frontend Developer",
+    title: "Aadi Garg | Frontend Developer",
     description:
       "Interactive and performant web experiences with cutting-edge frontend tech.",
-    url: "https://swayam-nine.vercel.app/",
-    siteName: "Swayam's Portfolio",
+    url: "https://Aadi-nine.vercel.app/",
+    siteName: "Aadi's Portfolio",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Swayam's Portfolio",
+        alt: "Aadi's Portfolio",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Swayam Swarup Panda | Frontend Developer",
+    title: "Aadi Garg | Frontend Developer",
     description: "Interactive and performant web experiences.",
-    creator: "@Swayam_Dev",
+    creator: "@Aadi_Dev",
     images: ["/og-image.png"],
   },
   icons: {
@@ -65,18 +65,22 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Swayam Swarup Panda",
-              url: "https://swayam-nine.vercel.app",
+              name: "Aadi Garg",
+              url: "https://Aadi-nine.vercel.app",
               jobTitle: "Frontend Developer",
               sameAs: [
-                "https://github.com/swayamDev",
-                "https://x.com/Swayam_Dev",
+                "https://github.com/AadiDev",
+                "https://x.com/Aadi_Dev",
               ],
             }),
           }}
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className} suppressHydrationWarning={true}>
+        <div suppressHydrationWarning={true}>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

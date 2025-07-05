@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
+import { useClientEffect } from "@/lib/hooks";
 
 const Hero = () => {
   const canvasRef = useRef(null);
@@ -104,7 +105,7 @@ const Hero = () => {
     }
   }
 
-  useEffect(() => {
+  useClientEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -226,11 +227,12 @@ const Hero = () => {
   return (
     <>
       <Navbar />
-      <div className="relative h-screen overflow-hidden bg-gray-950">
+      <div className="relative h-screen overflow-hidden bg-gray-950" suppressHydrationWarning={true}>
         <canvas
           ref={canvasRef}
           className="absolute inset-0 z-0 opacity-0 transition-opacity duration-1000 ease-in-out"
           aria-hidden="true"
+          suppressHydrationWarning={true}
         />
         <div
           role="banner"
@@ -247,7 +249,7 @@ const Hero = () => {
               className="font-head text-5xl leading-tight font-extrabold tracking-tight md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
               variants={letterContainer}
             >
-              {"Swayam".split("").map((char, idx) => (
+              {"Aadi".split("").map((char, idx) => (
                 <motion.span
                   key={idx}
                   className="inline-block"

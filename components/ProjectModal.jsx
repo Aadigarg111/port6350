@@ -30,25 +30,32 @@ export default function ProjectModal({ modal, projects }) {
     let xMoveContainer, yMoveContainer;
     let handleMouseMove;
 
-    import("gsap").then((gsap) => {
-      if (!modalContainer.current) return;
+    const loadGSAP = async () => {
+      try {
+        const gsap = await import("gsap");
+        if (!modalContainer.current) return;
 
-      xMoveContainer = gsap.default.quickTo(modalContainer.current, "left", {
-        duration: 0.8,
-        ease: "power3",
-      });
-      yMoveContainer = gsap.default.quickTo(modalContainer.current, "top", {
-        duration: 0.8,
-        ease: "power3",
-      });
+        xMoveContainer = gsap.default.quickTo(modalContainer.current, "left", {
+          duration: 0.8,
+          ease: "power3",
+        });
+        yMoveContainer = gsap.default.quickTo(modalContainer.current, "top", {
+          duration: 0.8,
+          ease: "power3",
+        });
 
-      handleMouseMove = (e) => {
-        xMoveContainer(e.pageX);
-        yMoveContainer(e.pageY);
-      };
+        handleMouseMove = (e) => {
+          xMoveContainer(e.pageX);
+          yMoveContainer(e.pageY);
+        };
 
-      window.addEventListener("mousemove", handleMouseMove);
-    });
+        window.addEventListener("mousemove", handleMouseMove);
+      } catch (error) {
+        console.warn("GSAP failed to load:", error);
+      }
+    };
+
+    loadGSAP();
 
     return () => {
       if (handleMouseMove) {

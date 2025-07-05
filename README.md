@@ -1,24 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Aadi's Portfolio
+
+A modern, responsive portfolio website built with Next.js, featuring smooth animations, interactive components, and a contact form with reCAPTCHA protection.
+
+## Features
+
+- 🎨 **Modern Design**: Clean, professional design with smooth animations
+- 📱 **Responsive**: Fully responsive across all devices
+- ⚡ **Performance**: Optimized with Next.js and Turbopack
+- 🔒 **Contact Form**: Secure contact form with reCAPTCHA protection
+- 🎯 **SEO Optimized**: Built with SEO best practices
+- 🌟 **Interactive**: Engaging animations and micro-interactions
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ 
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd Portfolio
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Set up environment variables (see [Environment Setup](./ENVIRONMENT_SETUP.md)):
+```bash
+# Create .env.local file with your configuration
+# Copy the example below and fill in your values
+```
+
+4. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file in the root directory with the following variables:
+
+```env
+# reCAPTCHA Configuration
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key_here
+RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key_here
+
+# Email Configuration (for Gmail)
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password_here
+CONTACT_EMAIL=your_email@gmail.com
+```
+
+See [Environment Setup](./ENVIRONMENT_SETUP.md) for detailed instructions on setting up reCAPTCHA and email functionality.
+
+## Project Structure
+
+```
+├── app/                 # Next.js app directory
+├── components/          # Reusable React components
+├── sections/           # Page sections (Hero, About, etc.)
+├── lib/               # Utility functions and configurations
+├── constants/         # Application constants
+└── public/           # Static assets
+```
 
 ## Learn More
 

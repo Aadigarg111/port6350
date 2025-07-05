@@ -134,10 +134,10 @@ const Navbar = () => {
   );
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-8 lg:px-10 bg-black text-white border-b border-gray-800">
+    <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-8 lg:px-10 bg-black text-white border-b border-gray-800" suppressHydrationWarning={true}>
       <div className="flex items-center justify-between max-w-7xl mx-auto py-4">
         <h1 className="text-2xl font-extrabold font-head tracking-wide">
-          Swayam
+          Aadi
         </h1>
         <div className="flex items-center gap-4">
           <button

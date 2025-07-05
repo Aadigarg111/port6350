@@ -24,10 +24,12 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Get reCAPTCHA token
-    const recaptchaToken = recaptchaRef.current?.getValue();
+    // Get reCAPTCHA token (only if reCAPTCHA is configured)
+    const recaptchaToken = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY 
+      ? recaptchaRef.current?.getValue() 
+      : "disabled";
 
-    if (!recaptchaToken) {
+    if (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && !recaptchaToken) {
       toast.error("Please complete the reCAPTCHA verification.");
       return;
     }
@@ -200,14 +202,23 @@ const Contact = () => {
                   />
                 </div>
 
-                {/* reCAPTCHA */}
-                <div className="flex justify-center">
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                    theme="dark" // Change to "light" if you prefer
-                  />
-                </div>
+                {/* reCAPTCHA
+                {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
+                  <div className="flex justify-center">
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                      theme="dark" // Change to "light" if you prefer
+                    />
+                  </div>
+                ) : (
+                  <div className="flex justify-center">
+                    <div className="text-sm text-gray-400 text-center p-4 border border-gray-600 rounded-lg">
+                      <p>reCAPTCHA is not configured.</p>
+                      <p className="mt-1">Please set up NEXT_PUBLIC_RECAPTCHA_SITE_KEY in your environment variables.</p>
+                    </div>
+                  </div>
+                )} */}
 
                 <button
                   type="submit"
@@ -250,24 +261,14 @@ const Contact = () => {
                     Email Me
                   </p>
                   <p className="text-sm break-all text-gray-300">
-                    swayamcoder@gmail.com
+                    Aadileetcode@gmail.com
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 rounded-lg border border-gray-700 p-4 transition-shadow duration-300 hover:shadow-md md:gap-4 md:p-6">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-gray-700 to-gray-800 shadow-sm md:h-12 md:w-12">
-                  <FaPhone className="text-sm text-white md:text-base" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="mb-1 text-sm font-semibold md:text-base">
-                    Call Me
-                  </p>
-                  <p className="text-sm text-gray-300">+91 63713 52331</p>
-                </div>
-              </div>
+              
 
-              <div className="flex items-start gap-3 rounded-lg border border-gray-700 p-4 transition-shadow duration-300 hover:shadow-md md:gap-4 md:p-6">
+              {/* <div className="flex items-start gap-3 rounded-lg border border-gray-700 p-4 transition-shadow duration-300 hover:shadow-md md:gap-4 md:p-6">
                 <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-gray-700 to-gray-800 shadow-sm md:h-12 md:w-12">
                   <FaClock className="text-sm text-white md:text-base" />
                 </div>
@@ -279,7 +280,7 @@ const Contact = () => {
                     Fast replies are my thing, usually within 24 hours.
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

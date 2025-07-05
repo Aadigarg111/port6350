@@ -4,6 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { NAV_ITEMS, SOCIAL_LINKS } from "@/constants/index";
 import { FaChevronUp } from "react-icons/fa";
+import ClientOnly from "./ClientOnly";
+import DynamicYear from "./DynamicYear";
 
 // Starfield Canvas Component (enhanced glow)
 const StarfieldCanvas = () => {
@@ -271,8 +273,8 @@ const Footer = () => {
                       ))}
                     </div>
                     <p className="text-sm text-gray-400">
-                      © {new Date().getFullYear()} Built with ❤️ and ✨ by
-                      Swayam.
+                      © <DynamicYear /> Built with ❤️ and ✨ by
+                      Aadi.
                     </p>
                   </div>
                 </div>
@@ -284,7 +286,7 @@ const Footer = () => {
               className="font-head relative text-center text-[14vw] leading-none font-extrabold tracking-tight text-white opacity-20"
               style={{ zIndex: 3 }}
             >
-              Swayam
+              Aadi
             </div>
           </footer>
         </div>

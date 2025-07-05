@@ -1,11 +1,11 @@
 {
-  "name": "Swayam Swarup Panda Portfolio",
-  "short_name": "Swayam",
+  "name": "Aadi Garg Portfolio",
+  "short_name": "Aadi",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "description": "Portfolio of Swayam Swarup Panda – Frontend Developer",
+  "description": "Portfolio of Aadi Garg – Frontend Developer",
   "icons": [
     {
       "src": "/favicon.ico",

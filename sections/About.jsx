@@ -3,15 +3,15 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
-import Image1 from "@/public/image1.jpeg";
-import Image2 from "@/public/image2.jpeg";
-import Image3 from "@/public/image3.jpg";
+// import Image1 from "@/public/image1.jpeg";
+// import Image2 from "@/public/image2.jpeg";
+// import Image3 from "@/public/image3.jpg";
 
-const IMAGES = [
-  { id: 1, image: Image1, alt: "Swayam Swarup Panda - Butterfly" },
-  { id: 2, image: Image2, alt: "Swayam Swarup Panda - Beach Cave" },
-  { id: 3, image: Image3, alt: "Swayam Swarup Panda - Desert Tree" },
-];
+// const IMAGES = [
+//   { id: 1, image: Image1, alt: "Aadi Garg - Butterfly" },
+//   { id: 2, image: Image2, alt: "Aadi Garg - Beach Cave" },
+//   { id: 3, image: Image3, alt: "Aadi Garg - Desert Tree" },
+// ];
 
 const About = () => {
   const containerRef = useRef(null);
@@ -24,7 +24,7 @@ const About = () => {
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -250]);
 
-  const heading = "Hi, I'm Swayam";
+  const heading = "Hi, I'm Aadi";
 
   const word = {
     hidden: { opacity: 0, y: 20 },
@@ -46,9 +46,9 @@ const About = () => {
       className="relative w-full bg-black px-4 pt-16 text-white md:px-8 lg:px-10"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+        <div className="grid items-center gap-12">
           {/* Text Column */}
-          <div className="order-1 space-y-8">
+          <div className="space-y-8">
             {/* Animated Heading - word-by-word */}
             <motion.h1
               className="font-head my-4 flex flex-wrap gap-2 text-4xl font-bold md:my-8 md:text-5xl lg:mt-0 lg:text-6xl"
@@ -98,9 +98,8 @@ const About = () => {
             </motion.a>
           </div>
 
-          {/* Image Column */}
-          <div className="relative order-2 h-[400px] md:h-[500px] lg:h-[700px]">
-            {/* Mobile - Center Image */}
+          {/* Image Column - Temporarily Commented Out */}
+          {/* <div className="relative order-2 h-[400px] md:h-[500px] lg:h-[700px]">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -117,7 +116,6 @@ const About = () => {
               />
             </motion.div>
 
-            {/* Desktop - Butterfly */}
             <motion.div
               style={{ y: y1 }}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -135,7 +133,6 @@ const About = () => {
               />
             </motion.div>
 
-            {/* Desktop - Beach Cave */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -152,7 +149,6 @@ const About = () => {
               />
             </motion.div>
 
-            {/* Desktop - Desert Tree */}
             <motion.div
               style={{ y: y2 }}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -169,7 +165,7 @@ const About = () => {
                 className="rounded-lg object-cover shadow-2xl"
               />
             </motion.div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

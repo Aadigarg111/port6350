@@ -16,64 +16,50 @@ export const NAV_ITEMS = [
   { href: "#contact", label: "Contact" },
 ];
 
-export const BRAND_NAME = "Swayam";
+export const BRAND_NAME = "Aadi";
 
 export const PROJECTS = [
   {
     name: "SaaSify",
     image: project1,
-    href: "https://saasify-rho.vercel.app/",
+    href: "#",
   },
   {
     name: "Ethical Feedback Collector",
     image: project2,
-    href: "https://ethical-feedback-collector.vercel.app/",
+    href: "#",
   },
   {
     name: "Contrast Studio",
     image: project3,
-    href: "https://color-contrast-checker-six.vercel.app/",
+    href: "#",
   },
-  {
-    name: "ZentroLab",
-    image: project4,
-    href: "https://zentrolab.vercel.app/",
-  },
-  {
-    name: "Creativerse",
-    image: project5,
-    href: "https://creativerse-ten.vercel.app/",
-  },
-  {
-    name: "PawCity",
-    image: project6,
-    href: "https://petfriendlycity.netlify.app/",
-  },
+  
 ];
 
 export const SOCIAL_LINKS = [
   {
     id: 1,
     label: "GitHub",
-    href: "https://github.com/swayamDev",
+    href: "https://github.com/Aadi",
     icon: <FaGithub className="text-2xl text-white" />,
   },
   {
     id: 2,
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/swayam-webdev/",
+    href: "https://www.linkedin.com/in/Aadi-webdev/",
     icon: <FaLinkedinIn className="text-2xl text-white" />,
   },
   {
     id: 3,
     label: "Twitter",
-    href: "https://x.com/Swayam_Dev",
+    href: "https://x.com/Aadi_Dev",
     icon: <FaXTwitter className="text-2xl text-white" />,
   },
   {
     id: 4,
     label: "Email",
-    href: "mailto:swayamcoder@gmail.com",
+    href: "mailto:aadileetcode@gmail.com",
     icon: <MdEmail className="text-2xl text-white" />,
   },
 ];

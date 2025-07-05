@@ -6,10 +6,11 @@ import Hero from "@/sections/Hero";
 import { Highlights } from "@/sections/Highlights";
 import Projects from "@/sections/Projects";
 import Skills from "@/sections/Skills";
+import HydrationSafe from "@/components/HydrationSafe";
 
 export default function Home() {
   return (
-    <>
+    <HydrationSafe>
       <Hero />
       <ScrollingText />
       <About />
@@ -20,6 +21,6 @@ export default function Home() {
       <ScrollingText />
       <Contact />
       <Footer />
-    </>
+    </HydrationSafe>
   );
 }

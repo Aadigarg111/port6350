@@ -17,7 +17,7 @@ const validateAndSanitizeInput = (data) => {
     throw new Error("Name, email, and message are required fields.");
   }
 
-  if (!recaptchaToken) {
+  if (!recaptchaToken && process.env.RECAPTCHA_SECRET_KEY) {
     throw new Error("reCAPTCHA verification is required.");
   }
 
@@ -86,8 +86,10 @@ const checkRateLimit = (ip) => {
 const verifyRecaptcha = async (token) => {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
 
-  if (!secretKey) {
-    throw new Error("reCAPTCHA secret key not configured.");
+  // Skip reCAPTCHA verification if not configured
+  if (!secretKey || token === "disabled") {
+    console.warn("reCAPTCHA not configured, skipping verification");
+    return { success: true };
   }
 
   try {
